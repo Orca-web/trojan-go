@@ -305,6 +305,7 @@ install_nginx() {
 
     ./configure --prefix="${nginx_dir}" \
         --with-http_ssl_module \
+	--with-http_sub_module \
         --with-http_gzip_static_module \
         --with-http_stub_status_module \
         --with-pcre \
@@ -316,7 +317,6 @@ install_nginx() {
         --with-cc-opt='-O3' \
         --with-ld-opt="-ljemalloc" \
         --with-openssl=../openssl-"$openssl_version"
-	--with-http_sub_module
     sucess_or_fail "编译检查"
     make && make install
     sucess_or_fail "Nginx 编译安装"
