@@ -232,6 +232,8 @@ tls_generate_script_install() {
     curl https://get.acme.sh | sh
     sucess_or_fail "安装 tls 证书生成脚本"
     source ~/.bashrc
+    acme.sh  --register-account  -m 907943281@qq.com --server zerossl
+    acme.sh --set-default-ca  --server zerossl
 }
 tls_generate() {
   if [[ -f "/data/${domain}/fullchain.crt" ]] && [[ -f "/data/${domain}/privkey.key" ]]; then
