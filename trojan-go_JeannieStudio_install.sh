@@ -232,13 +232,13 @@ tls_generate_script_install() {
     curl https://get.acme.sh | sh
     sucess_or_fail "安装 tls 证书生成脚本"
     source ~/.bashrc
-    acme.sh  --register-account  -m 907943281@qq.com --server zerossl
-    acme.sh --set-default-ca  --server zerossl
 }
 tls_generate() {
   if [[ -f "/data/${domain}/fullchain.crt" ]] && [[ -f "/data/${domain}/privkey.key" ]]; then
     echo -e "${Info}证书已存在……不需要再重新签发了……"
   else
+   "$HOME"/.acme.sh/acme.sh  --register-account  -m 907943281@qq.com --server zerossl
+   "$HOME"/.acme.sh/acme.sh --set-default-ca  --server zerossl
     if "$HOME"/.acme.sh/acme.sh --issue -d "${domain}" --standalone -k ec-256 --force --test; then
         echo -e "${Info} TLS 证书测试签发成功，开始正式签发"
         rm -rf "$HOME/.acme.sh/${domain}_ecc"
